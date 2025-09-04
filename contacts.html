@@ -25,25 +25,32 @@
     </header>
     <!-- Уникальное основное содержимое страницы -->
     <main>
-      <h1>Добро пожаловать на наш сайт!</h1>
-      <!-- Секция 1 с якорем -->
-      <section id="services">
-        <h2>Наши услуги</h2>
-        <p>Описание предоставляемых услуг...</p>
-        <a href="#contacts">Связаться с нами</a>
-        <!-- Якорная ссылка внутри страницы -->
-      </section>
-      <!-- Секция 2 с якорем -->
-      <section id="portfolio">
-        <h2>Портфолио</h2>
-        <p>Примеры наших работ...</p>
-      </section>
-      <!-- Секция 3 с якорем -->
-      <section id="contacts">
+      <nav aria-label="Хлебные крошки">
+        <a href="index.html">Главная</a> →
+        <span>Контакты</span>
+      </nav>
+      <h1>Наши контакты</h1>
+
+      <section>
         <h2>Контактная информация</h2>
-        <p>Наши контакты...</p>
-        <a href="contacts.html">Подробнее</a>
-        <!-- Ссылка на отдельную страницу -->
+        <address>
+          <p>Адрес: г. Москва, ул. Примерная, д. 123</p>
+          <p>Телефон: <a href="tel:+79171966893">+7 (917) 196-68-93</a></p>
+          <p>
+            Email:
+            <a href="mailto:al7xsemenv@gmail.com">al7xsemenv@gmail.com</a>
+          </p>
+        </address>
+      </section>
+
+      <section>
+        <h2>Напишите нам</h2>
+        <form>
+          <input type="text" placeholder="Ваше имя" required />
+          <input type="email" placeholder="Ваш Email" required />
+          <textarea placeholder="Сообщение" rows="4" required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
       </section>
     </main>
     <!-- Подвал сайта -->
