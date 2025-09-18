@@ -1,0 +1,423 @@
+/* Базовые стили и сброс */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --gray-100: #f5f5f5;
+  --gray-200: #e0e0e0;
+  --gray-300: #c2c2c2;
+  --gray-400: #979797;
+  --gray-500: #818181;
+  --gray-600: #606060;
+  --gray-700: #424242;
+  --gray-800: #2b2b2b;
+  --gray-900: #1a1a1a;
+  --accent-color: #9400d3; /* Насыщенный красный как акцентный цвет */
+  --text-color: var(--gray-900);
+  --light-bg: var(--gray-100);
+  --border-color: var(--gray-300);
+  --success-color: #43A047;
+  --error-color: var(--accent-color);
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+main {
+  flex: 1;
+}
+
+/* Шапка сайта */
+.header {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* Навигация */
+.nav__list {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav__link {
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.nav__link:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.nav__link--active {
+  background-color: var(--accent-color);
+}
+
+/* Хлебные крошки */
+.breadcrumbs, nav[aria-label="Хлебные крошки"] {
+  background-color: var(--gray-100);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.breadcrumbs__list {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.breadcrumbs__link, nav[aria-label="Хлебные крошки"] a {
+  color: var(--gray-600);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbs__link:hover, nav[aria-label="Хлебные крошки"] a:hover {
+  color: var(--accent-color);
+}
+
+nav[aria-label="Хлебные крошки"] span {
+  color: var(--gray-800);
+}
+
+/* Герой секция */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/hero-bg.jpg') center/cover;
+  color: var(--white);
+  text-align: center;
+  padding: 4rem 0;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Секции */
+.section {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section__title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--black);
+  text-align: center;
+}
+
+/* Заголовки страниц */
+h1 {
+  font-size: 2.5rem;
+  color: var(--black);
+  margin: 2rem 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--black);
+  margin: 1.5rem 0;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--accent-color);
+}
+
+/* Изображения и медиа */
+.image-container {
+  margin: 2rem 0;
+}
+
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.responsive-image:hover {
+  filter: grayscale(0%);
+}
+
+.media-container {
+  margin: 2rem 0;
+  position: relative;
+  width: 100%;
+}
+
+.media-video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  aspect-ratio: 16 / 9;
+}
+
+/* Контактная информация */
+address {
+  font-style: normal;
+  margin: 1.5rem 0;
+  line-height: 1.8;
+}
+
+address a {
+  color: var(--black);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+address a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* Формы */
+.form, form[action="/submit"] {
+  background-color: var(--gray-100);
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+  border: 1px solid var(--border-color);
+}
+
+.form__group, .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form__label, label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--gray-800);
+}
+
+.form__input, 
+.form__select, 
+.form__textarea,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: var(--white);
+  color: var(--gray-900);
+}
+
+.form__input:focus,
+.form__select:focus,
+.form__textarea:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
+}
+
+.form__textarea,
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form__help {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.form__error {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.form__error.show {
+  display: block;
+}
+
+.form__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+/* Кнопки и ссылки */
+.button, 
+button[type="submit"],
+button[type="button"] {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--gray-800);
+  color: var(--white);
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.button:hover, 
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  background-color: var(--black);
+  transform: translateY(-2px);
+}
+
+.button--primary {
+  background-color: var(--accent-color);
+}
+
+.button--primary:hover {
+  background-color: #c62828;
+  transform: translateY(-2px);
+}
+
+.anchor-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.anchor-link:hover {
+  text-decoration: underline;
+  transform: translateX(5px);
+}
+
+/* Модальное окно */
+.modal {
+  border: none;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+}
+
+.modal::backdrop {
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal__title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--black);
+  text-align: center;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.modal__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--accent-color);
+}
+
+/* Подвал */
+.footer, footer {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer p, footer p {
+  margin-bottom: 0.5rem;
+}
+
+.footer a, footer a {
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover, footer a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* Дополнительные стили для черно-белой темы */
+p, li {
+  color: var(--gray-700);
+}
+
+strong {
+  color: var(--black);
+}
+

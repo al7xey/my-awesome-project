@@ -1,45 +1,72 @@
+<!-- about -->
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    ...
-    <!-- Скопируйте весь блок <head> из index.html -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>О нас - Название вашего сайта</title>
-    <meta
-      name="description"
-      content="Узнайте больше о нашей компании и истории"
-    />
+    <meta name="description" content="Узнайте больше о нашей компании и истории" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <header>
-      <a href="/">Логотип или название сайта</a>
-      <!-- Главное меню навигации -->
-      <nav>
-        <ul>
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="about.html">О нас</a></li>
-          <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-      </nav>
+    <!-- Шапка сайта -->
+    <header class="header">
+      <div class="container">
+        <a href="/" class="header__logo">Логотип или название сайта</a>
+        <!-- Главное меню навигации -->
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="index.html" class="nav__link">Главная</a>
+            </li>
+            <li class="nav__item">
+              <a href="about.html" class="nav__link nav__link--active">О нас</a>
+            </li>
+            <li class="nav__item">
+              <a href="contacts.html" class="nav__link">Контакты</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
+    
+    <!-- Основное содержимое страницы -->
     <main>
-      <!-- Простые "хлебные крошки" -->
+      <!-- Хлебные крошки -->
       <nav aria-label="Хлебные крошки">
-        <a href="index.html">Главная</a> →
-        <span>О нас</span>
+        <a href="index.html">Главная</a> → <span>О нас</span>
       </nav>
+      
       <h1>О нашей компании</h1>
+      
       <section>
         <h2>Наша история</h2>
         <p>Текст о том, как все начиналось...</p>
       </section>
+      
       <section>
         <h2>Наша команда</h2>
         <p>Текст о команде...</p>
       </section>
+      
+      <section>
+        <h2>Наши ценности</h2>
+        <p>Текст о ценностях компании...</p>
+      </section>
+      
+      <section>
+        <h2>Мы и будущее</h2>
+        <p>Текст о том, как мы видим будущее и наше развитие...</p>
+      </section>
     </main>
-    <footer>
-      <p>&copy; 2023 Название вашего сайта. Все права защищены.</p>
-      <p>Телефон: +7 (123) 456-78-90</p>
+    
+    <!-- Подвал сайта -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2023 Название вашего сайта. Все права защищены.</p>
+        <p>Телефон: <a href="tel:+71234567890">+7 (123) 456-78-90</a></p>
+      </div>
     </footer>
   </body>
 </html>
