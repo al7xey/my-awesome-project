@@ -1,82 +1,81 @@
-<!-- contacts -->
 <!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Главная - Название вашего сайта</title>
-    <meta name="description" content="Краткое описание главной страницы вашего сайта" />
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <title>Контакты — Мой сайт</title>
+    <meta name="description" content="Контактная информация и форма обратной связи" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
   </head>
   <body>
-    <!-- Шапка сайта -->
-    <header class="header">
-      <div class="container">
-        <a href="/" class="header__logo">Логотип или название сайта</a>
-        <!-- Главное меню навигации -->
-        <nav class="nav">
+    <header class="header" role="banner">
+      <div class="container header__bar">
+        <a href="index.html" class="header__logo">Мой сайт</a>
+        <nav class="nav" aria-label="Главная навигация">
           <ul class="nav__list">
-            <li class="nav__item">
-              <a href="index.html" class="nav__link nav__link--active">Главная</a>
-            </li>
-            <li class="nav__item">
-              <a href="about.html" class="nav__link">О нас</a>
-            </li>
-            <li class="nav__item">
-              <a href="contacts.html" class="nav__link">Контакты</a>
-            </li>
+            <li class="nav__item"><a class="nav__link" href="index.html">Главная</a></li>
+            <li class="nav__item"><a class="nav__link" href="about.html">О нас</a></li>
+            <li class="nav__item"><a class="nav__link nav__link--active" href="contacts.html">Контакты</a></li>
           </ul>
         </nav>
       </div>
     </header>
-    
-    <!-- Уникальное основное содержимое страницы -->
+
     <main>
-      <!-- Хлебные крошки -->
-      <nav aria-label="Хлебные крошки">
-        <a href="index.html">Главная</a> → <span>Контакты</span>
-      </nav>
-      
-      <h1>Наши контакты</h1>
+      <section class="section">
+        <div class="container">
+          <h1 class="section__title">Наши контакты</h1>
 
-      <section>
-        <h2>Контактная информация</h2>
-        <address>
-          <p>Адрес: г. Москва, ул. Примерная, д. 123</p>
-          <p>Телефон: <a href="tel:+79171966893">+7 (917) 196-68-93</a></p>
-          <p>Email: <a href="mailto:al7xsemenv@gmail.com">al7xsemenv@gmail.com</a></p>
-        </address>
-      </section>
+          <div class="content">
+            <address>
+              <p>Адрес: г. Москва, ул. Примерная, д. 123</p>
+              <p>Телефон: <a href="tel:+79171966893">+7 (917) 196-68-93</a></p>
+              <p>Email: <a href="mailto:al7xsemenov@gmail.com">al7xsemenov@gmail.com</a></p>
+            </address>
 
-      <section>
-        <h2>Напишите нам</h2>
-        <form action="/submit" method="POST">
-          <div class="form-group">
-            <label for="name">Ваше имя</label>
-            <input id="name" type="text" name="name" placeholder="Ваше имя" required />
+            <h2 class="section__title">Напишите нам</h2>
+
+            <form action="/submit" method="POST" class="form" novalidate>
+              <div class="form__group">
+                <label for="name" class="form__label">Ваше имя</label>
+                <input id="name" name="name" type="text" class="form__input" placeholder="Иван Иванов" required />
+                <div class="form__error" id="nameError" aria-live="polite"></div>
+              </div>
+
+              <div class="form__group">
+                <label for="email" class="form__label">Ваш Email</label>
+                <input id="email" name="email" type="email" class="form__input" placeholder="name@example.com" required />
+                <div class="form__error" id="emailError" aria-live="polite"></div>
+              </div>
+              
+              <div class="form__group">
+                <label for="phone" class="form__label">Телефон</label>
+                <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+79000000000"
+                  pattern="^\+7d{3}d{3}d{2}d{2}$" required class="form__input" />
+                <small class="form__help">Формат: +79000000000</small>
+                <div class="form__error" id="phoneError" aria-live="polite"></div>
+              </div>
+
+
+              <div class="form__group">
+                <label for="message" class="form__label">Сообщение</label>
+                <textarea id="message" name="message" class="form__textarea" rows="5" placeholder="Ваше сообщение" required></textarea>
+                <div class="form__error" id="messageError" aria-live="polite"></div>
+              </div>
+
+              <div class="form__actions">
+                <button type="submit" class="button">Отправить</button>
+              </div>
+            </form>
           </div>
-          
-          <div class="form-group">
-            <label for="email">Ваш Email</label>
-            <input id="email" type="email" name="email" placeholder="Ваш Email" required />
-          </div>
-          
-          <div class="form-group">
-            <label for="message">Сообщение</label>
-            <textarea id="message" name="message" placeholder="Сообщение" rows="4" required></textarea>
-          </div>
-          
-          <button type="submit">Отправить</button>
-        </form>
+        </div>
       </section>
     </main>
-    
-    <!-- Подвал сайта -->
-    <footer>
+
+    <footer class="footer" role="contentinfo">
       <div class="container">
-        <p>&copy; 2023 Название вашего сайта. Все права защищены.</p>
-        <p>Телефон: <a href="tel:+71234567890">+7 (123) 456-78-90</a></p>
+        <p>&copy; 2025 Мой сайт. Все права защищены.</p>
       </div>
     </footer>
   </body>

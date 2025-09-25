@@ -1,51 +1,88 @@
-const dlg = document.getElementById("contactDialog");
-const openBtn = document.getElementById("openDialog");
-const closeBtn = document.getElementById("closeDialog");
-const form = document.getElementById("contactForm"); // ← Одно объявление
+const dlg = document.getElementById('contactDialog');
+const openBtn = document.getElementById('openDialog');
+const closeBtn = document.getElementById('closeDialog');
+const xClose = document.getElementById('xClose');
+const form = document.getElementById('contactForm');
 let lastActive = null;
 
-openBtn.addEventListener("click", () => {
+function openDialog() {
   lastActive = document.activeElement;
-  dlg.showModal();
-  dlg.querySelector("input,select,textarea,button")?.focus();
+  if (typeof dlg.showModal === 'function') {
+    dlg.showModal();
+  } else {
+    dlg.setAttribute('open', '');
+  }
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(() => {
+    dlg.querySelector('input,textarea,select,button')?.focus();
+  }, 10);
+}
+
+
+function closeDialog(reason = 'cancel') {
+  try {
+    if (typeof dlg.close === 'function') dlg.close(reason);
+    else dlg.removeAttribute('open');
+  } catch (e) {
+    dlg.removeAttribute('open');
+  }
+  document.documentElement.style.overflow = '';
+  document.body.style.overflow = '';
+
+  lastActive?.focus?.();
+}
+
+openBtn?.addEventListener('click', openDialog);
+closeBtn?.addEventListener('click', () => closeDialog('cancel'));
+xClose?.addEventListener('click', () => closeDialog('cancel'));
+
+
+dlg?.addEventListener('cancel', (ev) => {
+  
+  closeDialog('cancel');
 });
 
-closeBtn.addEventListener("click", () => dlg.close("cancel"));
 
-form?.addEventListener("submit", (e) => {
-  // 1) Сброс кастомных сообщений
-  [...form.elements].forEach(el => el.setCustomValidity?.(''));
-  
-  // 2) Проверка встроенных ограничений
+dlg?.addEventListener('close', () => {
+  document.documentElement.style.overflow = '';
+  document.body.style.overflow = '';
+  lastActive?.focus?.();
+});
+
+form?.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  [...form.querySelectorAll('.form__error')].forEach(el => el.textContent = '');
+
   if (!form.checkValidity()) {
-    e.preventDefault();
-    
+    const name = form.elements.name;
     const email = form.elements.email;
-    if (email?.validity.typeMismatch) {
-      email.setCustomValidity('Введите корректный e-mail, например name@example.com');
+    const phone = form.elements.phone;
+    const message = form.elements.message;
+
+    if (!name.checkValidity()) {
+      document.getElementById('nameError').textContent = name.validity.valueMissing ? 'Введите имя' : 'Минимум 2 символа';
     }
-    
-    form.reportValidity();
-    
-    [...form.elements].forEach(el => {
-      if (el.willValidate) el.toggleAttribute('aria-invalid', !el.checkValidity());
-    });
+    if (!email.checkValidity()) {
+      document.getElementById('emailError').textContent = email.validity.valueMissing ? 'Введите e-mail' : 'Некорректный e-mail';
+    }
+    if (!phone.checkValidity()) {
+      document.getElementById('phoneError').textContent = phone.validity.valueMissing ? 'Введите телефон' : 'Телефон в формате +7 (900) 000-00-00';
+    }
+    if (!message.checkValidity()) {
+      document.getElementById('messageError').textContent = 'Введите сообщение';
+    }
+
+    const invalid = form.querySelector(':invalid');
+    invalid?.focus();
     return;
   }
-  
-  // 3) Успешная «отправка»
-  e.preventDefault();
-  document.getElementById('contactDialog')?.close('success');
-  form.reset();
-});
 
-dlg.addEventListener("close", () => {
-  lastActive?.focus();
+  setTimeout(() => {
+    form.reset();
+    closeDialog('success');
+    alert('Сообщение отправлено. Спасибо!');
+  }, 250);
 });
-
-// Остальной код с телефоном...
-const phone = document.getElementById('phone');
-phone?.addEventListener('input', () => {
-  // форматирование телефона
-});
-phone?.setAttribute('pattern', '^\\+7 \\(\\d{3}\\) \\d{3}-\\d{2}-\\d{2}$');

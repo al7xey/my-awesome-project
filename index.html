@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Главная - Название вашего сайта</title>
-    <meta name="description" content="Краткое описание главной страницы вашего сайта" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Главная — Пример сайта</title>
+    <meta name="description" content="Пример страницы с модалкой и новым стилем" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
   </head>
+
   <body>
-    <!-- Шапка сайта -->
-    <header class="header">
-      <div class="container">
+    <header class="header" role="banner">
+      <div class="container header__bar">
         <a href="/" class="header__logo">Мой сайт</a>
-        <!-- Главное меню навигации -->
-        <nav class="nav">
+
+        <nav class="nav" aria-label="Главная навигация">
           <ul class="nav__list">
             <li class="nav__item">
               <a href="index.html" class="nav__link nav__link--active">Главная</a>
@@ -29,142 +29,96 @@
         </nav>
       </div>
     </header>
-    <!-- Основное содержимое страницы -->
+
     <main>
-      <!-- Герой-секция с фоновым изображением -->
-      <section class="hero" id="top">
-        <div class="container">
+      <section class="hero" id="top" aria-label="Приветственный блок">
+        <div class="container hero__inner">
           <h1 class="hero__title">Добро пожаловать на наш сайт!</h1>
+          <p class="hero__lead">Короткое описание/слоган. Основная информация слева — смотрите макет ниже.</p>
         </div>
       </section>
 
-      <!-- Секция 1 с якорем -->
       <section id="services" class="section">
         <div class="container">
           <h2 class="section__title">Наши услуги</h2>
-          <p>Описание предоставляемых услуг...</p>
+          <div class="content">
+            <p>Здесь основной информационный текст</p>
 
-          <!-- Responsive изображение -->
-          <div class="image-container">
-            <img 
-              src="assets/service-small.jpg" 
-              alt="Наши услуги"
-              class="responsive-image"
-            />
+            <div class="image-container">
+              <img src="./images/services.jpeg" alt="Пример" class="responsive-image" />
+            </div>
+
+            <div class="actions">
+              <button id="openDialog" class="button button--primary">Написать нам</button>
+              <a href="#contacts" class="button">Связаться</a>
+            </div>
           </div>
-
-          <a href="#contacts" class="anchor-link">Связаться с нами</a>
         </div>
       </section>
 
-      <!-- Секция 2 с якорем -->
       <section id="portfolio" class="section">
         <div class="container">
           <h2 class="section__title">Портфолио</h2>
           <p>Примеры наших работ...</p>
 
-          <!-- Видео с aspect-ratio -->
           <div class="media-container">
-            <video 
-              controls 
-              poster="assets/video-poster.jpg"
-              class="media-video"
-            >
-              <source src="assets/video.mp4" type="video/mp4" />
-              <track 
-                kind="subtitles" 
-                src="assets/subtitles.vtt" 
-                srclang="ru" 
-                label="Russian"
-              />
+            <video controls class="media-video" poster="assets/video-poster.jpg" autoplay muted>
+              <source src="assets/video11.mp4" type="video/mp4" />
               Ваш браузер не поддерживает видео.
             </video>
           </div>
         </div>
       </section>
 
-      <!-- Секция 3 с якорем -->
       <section id="contacts" class="section">
         <div class="container">
-          <h2 class="section__title">Контактная информация</h2>
-          <p>Наши контакты...</p>
-          <a href="contacts.html" class="button">Подробнее</a>
+          <h2 class="section__title">Контакты</h2>
+          <address>
+            <p>г. Москва, ул. Примерная, д. 123</p>
+            <p>Телефон: <a href="tel:+79171966893">+7 (917) 196-68-93</a></p>
+            <p>Email: <a href="mailto:al7xsemenv@gmail.com">al7xsemenov@gmail.com</a></p>
+          </address>
         </div>
       </section>
+    </main>
 
-      <!-- Кнопка открытия модалки -->
+    <footer class="footer" role="contentinfo">
       <div class="container">
-        <button id="openDialog" type="button" class="button button--primary">Написать нам</button>
+        <p>&copy; 2025 Мой сайт. Все права защищены.</p>
       </div>
+    </footer>
 
-      <!-- Модалка с формой -->
-      <dialog id="contactDialog" aria-labelledby="dialogTitle" class="modal">
+    <dialog id="contactDialog" class="modal" aria-labelledby="dialogTitle" aria-modal="true">
+      <div class="modal__wrap">
+        <button class="modal__close" id="xClose" aria-label="Закрыть модальное окно">✕</button>
+
         <h2 id="dialogTitle" class="modal__title">Обратная связь</h2>
-        <form id="contactForm" method="dialog" novalidate class="form">
+
+        <form id="contactForm" class="form" novalidate>
           <div class="form__group">
             <label for="name" class="form__label">Имя</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              minlength="2"
-              autocomplete="given-name"
-              class="form__input"
-            />
-            <div class="form__error" id="nameError"></div>
+            <input id="name" name="name" type="text" minlength="2" required class="form__input" />
+            <div class="form__error" id="nameError" aria-live="polite"></div>
           </div>
 
           <div class="form__group">
             <label for="email" class="form__label">E-mail</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              class="form__input"
-            />
-            <div class="form__error" id="emailError"></div>
+            <input id="email" name="email" type="email" required class="form__input" />
+            <div class="form__error" id="emailError" aria-live="polite"></div>
           </div>
 
           <div class="form__group">
             <label for="phone" class="form__label">Телефон</label>
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              inputmode="tel"
-              autocomplete="tel"
-              aria-describedby="phoneHelp"
-              placeholder="+7 (___) ___-__-__"
-              required
-              pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
-              class="form__input"
-            />
-            <small id="phoneHelp" class="form__help">Формат: +7 (900) 000-00-00</small>
-            <div class="form__error" id="phoneError"></div>
-          </div>
-
-          <div class="form__group">
-            <label for="date" class="form__label">Дата</label>
-            <input id="date" name="date" type="date" class="form__input" />
-          </div>
-
-          <div class="form__group">
-            <label for="topic" class="form__label">Тема</label>
-            <select id="topic" name="topic" required class="form__select">
-              <option value="">Выберите тему</option>
-              <option>Вопрос</option>
-              <option>Заказ</option>
-            </select>
-            <div class="form__error" id="topicError"></div>
+            <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+79000000000"
+              pattern="^\+7d{3}d{3}d{2}d{2}$" required class="form__input" />
+            <small class="form__help">Формат: +79000000000</small>
+            <div class="form__error" id="phoneError" aria-live="polite"></div>
           </div>
 
           <div class="form__group">
             <label for="message" class="form__label">Сообщение</label>
             <textarea id="message" name="message" rows="4" required class="form__textarea"></textarea>
-            <div class="form__error" id="messageError"></div>
+            <div class="form__error" id="messageError" aria-live="polite"></div>
           </div>
 
           <div class="form__actions">
@@ -172,18 +126,9 @@
             <button type="submit" class="button button--primary">Отправить</button>
           </div>
         </form>
-      </dialog>
-    </main>
-    
-    <!-- Подвал сайта -->
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2025 Мой сайт. Все права защищены.</p>
-        <p>Телефон: +7 (917) 196-68-93</p>
       </div>
-    </footer>
+    </dialog>
 
-    <!-- Подключение JavaScript файла -->
     <script src="main.js"></script>
   </body>
 </html>
