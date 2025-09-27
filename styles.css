@@ -47,6 +47,7 @@ body::-webkit-scrollbar{
 }
 
 .header{
+  width: 1200px;
   padding:12px 0;
   background:transparent;
 }
@@ -153,6 +154,10 @@ body::-webkit-scrollbar{
 .section__title{
   font-size:1.25rem;
   margin-bottom:10px;
+}
+
+.section__title-form {
+  text-align: center;
 }
 
 p{
