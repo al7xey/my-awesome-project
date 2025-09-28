@@ -16,21 +16,16 @@
   --text:#222;
 }
 
-html{
-  height:100%;
-}
 
 body{
   font-family:Arial, Helvetica, sans-serif;
-  align-self: center;
   justify-self: center;
   color:var(--text);
   background:var(--white);
-  display:grid;
+  display:flex;
   flex-direction:column;
   min-height:100vh;
   text-align:left;
-  scrollbar-width:none;
   overflow-y:auto;
 }
 
@@ -260,11 +255,14 @@ dialog[open] {
   align-self: center;
   justify-self: center;
   border-radius:var(--rounded);
-  border: 1px solid black;
   align-items: center;
+  border: none;
   justify-content: center;
 }
 
+dialog::backdrop {
+  pointer-events: none;
+}
 
 .modal__wrap{
   background:var(--white);
@@ -275,6 +273,7 @@ dialog[open] {
   margin:0 auto;
   position:relative;
   box-sizing:border-box;
+  pointer-events: auto;
 }
 
 .modal__close{

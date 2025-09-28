@@ -12,9 +12,6 @@ function openDialog() {
   } else {
     dlg.setAttribute('open', '');
   }
-  document.documentElement.style.overflow = 'hidden';
-  document.body.style.overflow = 'hidden';
-
   setTimeout(() => {
     dlg.querySelector('input,textarea,select,button')?.focus();
   }, 10);
